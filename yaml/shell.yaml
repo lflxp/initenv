@@ -1,0 +1,42 @@
+- stage: build 
+  name: "111111111111111111111111"
+  shell: "hostname"
+- stage: what
+  name: 非stage测试
+  shell: whoami
+  when:
+    key: hostname
+    value: hello
+- stage: build
+  name: 获取go version
+  shell: go version
+  ignore: true
+- stage: vim-go
+  name: install vim-go plugin
+  shell: "{{ .item }}"
+  with_items:
+  - git version
+  - uname -a
+- stage: test
+  name: 获取主机名
+  shell: "{{.item}}"
+  with_items:
+  - hostname
+  - ip a
+  - pwd
+  - uname -a
+  tags:
+    - 127.0.0.1
+  retry: 10 # 重试次数
+  wait: 1 # 重试间隔 单位秒钟
+
+- stage: test
+  name: 查看golang信息
+  shell: "{{.item}}"
+  with_items:
+  - systemctl status sshd
+  - go version 
+  retry: 3
+  wait: 1
+  terminial: false # ssh 是否交互式执行
+  ignore: true
