@@ -1,0 +1,23 @@
+- stage: zsh
+  name: 上传ohmyzsh安装脚本
+  template:
+    src: files/zsh.sh
+    dest: /tmp/zsh.sh
+
+- stage: zsh 
+  name: 安装ohmyzsh
+  shell: "{{.item}}"
+  with_items:
+  - sudo apt-get install zsh -y
+  - sh /tmp/zsh.sh
+  - git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  - git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+  - git clone https://github.com/joelthelion/autojump.git /tmp
+  - cd /tmp/autojump && sed -i '1s/python/python3/g' ./install.py && ./install.py
+  terminial: true
+
+- stage: zsh
+  name: 配置zshrc
+  template:
+    src: files/zshrc
+    dest: ~/.zshrc

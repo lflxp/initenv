@@ -1,0 +1,13 @@
+- stage: vim 
+  name: 安装vim
+  shell: "{{.item}}"
+  with_items:
+  - sudo apt-get install vim cmake g++ python3-dev build-essential -y
+  - git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  terminial: true
+
+- stage: vim
+  name: 安装vimrc
+  template:
+    src: files/vimrc
+    dest: ~/.vimrc

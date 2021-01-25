@@ -1,0 +1,7 @@
+- stage: npm 
+  name: 安装npm
+  shell: "{{.item}}"
+  with_items:
+  - sudo apt-get install npm -y
+  - sudo npm i -g yarn
+  terminial: true

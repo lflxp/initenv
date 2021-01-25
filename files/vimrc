@@ -1,0 +1,49 @@
+set nocompatible
+filetype on "开启文件类型侦测
+filetype indent on "适应不同语言的智能缩进
+syntax enable "开启语法高亮功能
+syntax on "允许用定制语法高亮配色方案替换默认方案
+set number "显示行号   
+set cursorline
+set ruler " 打开状态栏标尺  
+set laststatus=2
+set tabstop=4   "tab 代表4个空格
+set softtabstop=4       "使用tab时 tab空格数   
+set shiftwidth=4   " 默认缩进4个空格    
+set expandtab      " 使用空格替换tab
+set showmatch           "高亮显示匹配的括号
+set hlsearch            "高亮显示搜索结果
+set wildmenu "vim命令自动补全
+set rtp+=~/.vim/bundle/Vundle.vim 
+call vundle#begin()                                                      
+Plugin 'VundleVim/Vundle.vim'      
+Plugin 'fatih/vim-go' " golang语言插件
+Plugin 'scrooloose/nerdtree' " 树形目录插件
+Plugin 'vim-airline/vim-airline'  " 信息栏美化插件
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/nerdcommenter' " 多行注释
+Plugin 'jiangmiao/auto-pairs' "括号、引号自动补全
+Plugin 'Yggdroot/indentLine' " 显示缩进
+Plugin 'racer-rust/vim-racer'          "  rust插件列表1
+Plugin 'rust-lang/rust.vim'            "  rust插件列表2
+Plugin 'kien/ctrlp.vim' " 超级搜索插件
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'Xuyuanp/nerdtree-git-plugin' " 帮助显示一些 git 信息
+" Plugin 'vim-airline/fonts'
+" Plugin 'Valloric/YouCompleteMe'  " 自动补全插件 
+call vundle#end()   
+filetype plugin indent on   
+let mapleader=";"   
+map <leader>n :NERDTreeToggle<CR>  
+let g:go_fmt_command = "goimports"  
+let g:go_highlight_functions = 1  
+let g:go_highlight_methods = 1  
+let g:go_highlight_structs = 1  
+let g:ycm_add_preview_to_completeopt = 0   
+let g:ycm_min_num_of_chars_for_completion = 1     
+let g:ycm_auto_trigger = 1   
+let mapleader=","
+let g:indentLine_char='┆' "缩进指示线符
+let g:indentLine_enabled = 1 "开启缩进指示
+let g:rustfmt_autosave = 1
+set completeopt-=preview

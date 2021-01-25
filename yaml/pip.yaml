@@ -1,0 +1,13 @@
+- stage: pip
+  name: 安装pip
+  shell: "{{.item}}"
+  with_items:
+  - sudo apt-get install python3-pip -y
+  - mkdir ~/.pip
+  terminial: true
+
+- stage: pip
+  name: 安装pip
+  template:
+    src: files/pip.conf
+    dest: ~/.pip/pip.conf
