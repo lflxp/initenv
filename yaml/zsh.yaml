@@ -1,7 +1,7 @@
 - stage: zsh
   name: 上传ohmyzsh安装脚本
   template:
-    src: files/zsh.sh
+    src: ./files/zsh.sh
     dest: /tmp/zsh.sh
 
 - stage: zsh 
@@ -12,12 +12,13 @@
   - sh /tmp/zsh.sh
   - git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   - git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  - git clone https://github.com/joelthelion/autojump.git /tmp
+  - git clone https://github.com/joelthelion/autojump.git /tmp/autojump
   - cd /tmp/autojump && sed -i '1s/python/python3/g' ./install.py && ./install.py
   terminial: true
+  ignore: true
 
 - stage: zsh
   name: 配置zshrc
   template:
-    src: files/zshrc
-    dest: ~/.zshrc
+    src: ./files/zshrc
+    dest: /home/lxp/.zshrc

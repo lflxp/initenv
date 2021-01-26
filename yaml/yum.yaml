@@ -1,0 +1,17 @@
+- stage: apt 
+  name: 上传apt repo
+  template:
+    src: files/sources.list
+    dest: /tmp/sources.list
+
+- stage: apt 
+  name: 更新apt缓存
+  shell: "{{.item}}"
+  with_items:
+  - cat /etc/apt/sources.list
+  - sudo apt-get install apt-transport-https  ca-certificates  curl  software-properties-common -y
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu  $(lsb_release -cs)  stable"
+  - sudo apt-get update
+  - sudo apt-get install docker-ce -y
+  terminial: true

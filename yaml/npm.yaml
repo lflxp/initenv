@@ -5,3 +5,4 @@
   - sudo apt-get install npm -y
   - sudo npm i -g yarn
   terminial: true
+  ignore: true
